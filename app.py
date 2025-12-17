@@ -27,10 +27,7 @@ def save_data(data):
 def homepage():
     return render_template('home.html')
 
-
 @app.route('/diagnose', methods=['GET', 'POST'])
-def diagnose():
-@app.route('/', methods=['GET', 'POST'])
 def home():
     """
     The main diagnosis page. 
