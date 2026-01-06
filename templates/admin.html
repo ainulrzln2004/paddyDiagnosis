@@ -73,6 +73,15 @@
           </div>
         </div>
 
+        <div style="margin-top:15px;">
+          <label style="font-size:0.85em; font-weight:bold; color:#1e40af;">Logic</label>
+        <select name="logic" class="input-field" required>
+          <option value="OR" selected>OR</option>
+          <option value="AND">AND</option>
+        </select>
+        </div>
+
+
         <!-- Description -->
         <div style="margin-top:15px;">
           <label style="font-size:0.85em; font-weight:bold; color:#1e40af;">Description</label>
@@ -209,7 +218,7 @@
                   </span>
                 </td>
                 <td style="padding:12px;">{{ disease.severity }}</td>
-                <td style="padding:12px;">{{ disease.symptoms|length }} rules</td>
+                <td style="padding:12px;">{{ disease.symptoms|length }} symptoms</td>
                 <td style="padding:12px;">
                   <button type="button" class="btn-view" onclick="toggleDetails('{{ disease.id }}')">View</button>
 

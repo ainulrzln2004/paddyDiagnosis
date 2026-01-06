@@ -1,37 +1,109 @@
 {
   "leaf": [
-    { "id": "leaf_diamond_lesions", "label": "Diamond/Eye-shaped lesions" },
-    { "id": "leaf_gray_center", "label": "Lesions with gray/white centers" },
-    { "id": "leaf_brown_border", "label": "Lesions with brown borders" },
-    { "id": "leaf_water_soaked_streaks", "label": "Water-soaked streaks/stripes" },
-    { "id": "leaf_yellow_orange_margins", "label": "Yellow/Orange wavy margins" },
-    { "id": "leaf_milky_ooze", "label": "Milky ooze (bacterial droplets)" },
-    { "id": "leaf_drying_wilt", "label": "Leaves rolling/wilting" },
-    { "id": "leaf_general_yellowing", "label": "General yellowing (chlorosis)" },
-    { "id": "leaf_small_erect", "label": "Leaves are small and narrow" },
-    { "id": "leaf_yellow_orange_discoloration", "label": "Yellow to orange-red discoloration" },
-    { "id": "leaf_twisted_tips", "label": "Twisted leaf tips" },
-    { "id": "leaf_banding_pattern", "label": "Banding pattern (horizontal)" }
+    {
+      "id": "leaf_diamond_lesions",
+      "label": "Diamond/Eye-shaped lesions"
+    },
+    {
+      "id": "leaf_gray_center",
+      "label": "Lesions with gray/white centers"
+    },
+    {
+      "id": "leaf_brown_border",
+      "label": "Lesions with brown borders"
+    },
+    {
+      "id": "leaf_water_soaked_streaks",
+      "label": "Water-soaked streaks/stripes"
+    },
+    {
+      "id": "leaf_yellow_orange_margins",
+      "label": "Yellow/Orange wavy margins"
+    },
+    {
+      "id": "leaf_milky_ooze",
+      "label": "Milky ooze (bacterial droplets)"
+    },
+    {
+      "id": "leaf_drying_wilt",
+      "label": "Leaves rolling/wilting"
+    },
+    {
+      "id": "leaf_general_yellowing",
+      "label": "General yellowing (chlorosis)"
+    },
+    {
+      "id": "leaf_small_erect",
+      "label": "Leaves are small and narrow"
+    },
+    {
+      "id": "leaf_yellow_orange_discoloration",
+      "label": "Yellow to orange-red discoloration"
+    },
+    {
+      "id": "leaf_twisted_tips",
+      "label": "Twisted leaf tips"
+    },
+    {
+      "id": "leaf_banding_pattern",
+      "label": "Banding pattern (horizontal)"
+    }
   ],
-  "stem":[
-    {"id": "stem_dead_heart", "label": "Dead Heart (central shoot dies)"},
-    {"id": "stem_holes_frass", "label": "Holes in stem/Frass (powdery waste)"},
-    {"id": "stem_snake_skin_lesions", "label": "Snake-skin pattern lesions"},
-    {"id": "stem_irregular_spots", "label": "Irregular gray/green spots on sheath"},
-    {"id": "stem_visible_insects", "label": "Insects visible at plant base"}
+  "stem": [
+    {
+      "id": "stem_dead_heart",
+      "label": "Dead Heart (central shoot dies)"
+    },
+    {
+      "id": "stem_holes_frass",
+      "label": "Holes in stem/Frass (powdery waste)"
+    },
+    {
+      "id": "stem_snake_skin_lesions",
+      "label": "Snake-skin pattern lesions"
+    },
+    {
+      "id": "stem_irregular_spots",
+      "label": "Irregular gray/green spots on sheath"
+    },
+    {
+      "id": "stem_visible_insects",
+      "label": "Insects visible at plant base"
+    }
   ],
-  "panicle":[
-      { "id": "panicle_neck_rot", "label": "Neck Rot (blackening at base of panicle)" },
-      { "id": "panicle_white_head", "label": "White Head (empty, white panicles)" }
+  "panicle": [
+    {
+      "id": "panicle_neck_rot",
+      "label": "Neck Rot (blackening at base of panicle)"
+    },
+    {
+      "id": "panicle_white_head",
+      "label": "White Head (empty, white panicles)"
+    }
   ],
- "Whole Plant / General":[
-    { "id": "plant_burnt_appearance", "label": "Burnt appearance of field" },
-    { "id": "plant_stunted_growth", "label": "Stunted growth / Dwarfing" },
-    { "id": "plant_hopper_burn", "label": "Hopper burn (circular drying patches)" },
-    { "id": "plant_sooty_mold", "label": "Sooty mold (black powder) at base"},
-    { "id": "plant_reduced_tillering", "label": "Reduced tillering" }
- ],
- "disease":[
+  "Whole Plant / General": [
+    {
+      "id": "plant_burnt_appearance",
+      "label": "Burnt appearance of field"
+    },
+    {
+      "id": "plant_stunted_growth",
+      "label": "Stunted growth / Dwarfing"
+    },
+    {
+      "id": "plant_hopper_burn",
+      "label": "Hopper burn (circular drying patches)"
+    },
+    {
+      "id": "plant_sooty_mold",
+      "label": "Sooty mold (black powder) at base"
+    },
+    {
+      "id": "plant_reduced_tillering",
+      "label": "Reduced tillering"
+    }
+  ],
+  "disease": [
     {
       "id": "rice_blast",
       "name": "Rice Blast (Magnaporthe oryzae)",
@@ -170,5 +242,4 @@
       ]
     }
   ]
-
 }

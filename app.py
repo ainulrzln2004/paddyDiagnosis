@@ -256,6 +256,10 @@ def add_disease():
     name = request.form["name"].strip()
     new_id = name.lower().replace(" ", "_")
 
+    logic = request.form.get("logic", "OR").strip().upper()
+    if logic not in ["AND", "OR"]:
+        logic = "OR"
+
     mgmt_raw = request.form.get("management", "").strip()
     if "\n" in mgmt_raw:
         management_list = [line.strip() for line in mgmt_raw.splitlines() if line.strip()]
@@ -267,6 +271,7 @@ def add_disease():
         "name": name,
         "type": request.form.get("type", "").strip(),
         "severity": request.form.get("severity", "").strip(),
+        "logic": logic,
         "description": request.form.get("description", "").strip(),
         "management": management_list,
         "symptoms": request.form.getlist("symptoms"),
