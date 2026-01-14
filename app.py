@@ -212,40 +212,83 @@ def update_selection(category_slug):
 def diagnose():
     data = load_data()
     diseases = data.get("disease", [])
-    selected_symptoms = list(get_selected_set())
-    selected_set = set(selected_symptoms)
+    selected_symptoms = list(get_selected_set())  # Get selected symptoms
+    selected_set = set(selected_symptoms)  # Convert to set for easier comparison
 
     scores = []
+
     for dis in diseases:
         dis_symptoms = dis.get("symptoms", [])
         if not dis_symptoms:
             continue
 
-        logic = dis.get("logic", "OR").upper()
-        matches = [s for s in dis_symptoms if s['id'] in selected_set]
+        # Assume disease logic: "AND-OR"
+        disease_logic = dis.get("logic", "AND-OR").upper()
 
+        # Initialize the matches list before the logic block
+        matches = []
 
-        if logic == "AND":
-            rule_pass = set(dis_symptoms).issubset(selected_set)
-        
-        else:
-            rule_pass = len(matches) > 0
-        
+        # Group symptoms by AND/OR logic
+        grouped_symptoms = []
+        group = []  # Temporary list for an AND group
+
+        # Parse through symptoms and group them by AND or OR logic
+        for symptom in dis_symptoms:
+            if symptom.get("logic") == "AND":
+                group.append(symptom)  # Add to current AND group
+            elif symptom.get("logic") == "OR":
+                if group:  # If there is an existing AND group, push it into grouped_symptoms
+                    grouped_symptoms.append(group)
+                    group = []  # Reset for new AND group
+                grouped_symptoms.append([symptom])  # Treat this OR symptom as its own group
+
+        # append any leftover AND group
+        if group:
+            grouped_symptoms.append(group)
+
+        # Check if the disease passes the AND-OR condition
+        rule_pass = False
+
+        # For AND-OR logic, check each group of symptoms
+        if disease_logic == "AND-OR":
+            for group in grouped_symptoms:
+                # If it's an AND group, check if all symptoms in the group are present in selected_set
+                if all(s['id'] in selected_set for s in group):
+                    rule_pass = True  # At least one AND group is fully matched
+                    break  # If one AND group is matched,  pass the rule
+
+        # For OR logic, disease passes if any symptom matches
+        elif disease_logic == "OR":
+            matches = [s for s in dis_symptoms if s['id'] in selected_set]
+            rule_pass = len(matches) > 0  # If any match exists, it's a pass
+
+        # If the rule doesn't pass, skip to the next disease
         if not rule_pass:
             continue
-    
 
-        confidence = round((len(matches) / len(dis_symptoms)) * 100, 2)
+        # Calculate confidence (percentage of matched symptoms)
+        # Confidence is calculated for both AND and OR logic cases
+        if disease_logic == "AND-OR":
+            # Confidence for AND-OR:  consider the number of matched symptoms in each group
+            total_matched = 0
+            total_symptoms = 0
+            for group in grouped_symptoms:
+                total_symptoms += len(group)
+                total_matched += len([s for s in group if s['id'] in selected_set])
+            confidence = round((total_matched / total_symptoms) * 100, 2)
+        else:
+            # Confidence for OR: calculate based on how many symptoms match
+            confidence = round((len(matches) / len(dis_symptoms)) * 100, 2)
 
-        
+        # Prepare the disease data for the response
         dis_copy = dis.copy()
         dis_copy["match_count"] = len(matches)
         dis_copy["matches"] = matches
         dis_copy["confidence"] = confidence
-        dis_copy["logic"] = logic
+        dis_copy["logic"] = disease_logic
         scores.append(dis_copy)
 
-    # Sort by number of matches (highest first)
+    # Sort the diseases by match count (highest first)
     scores.sort(key=lambda x: x["match_count"], reverse=True)
 
     session.pop("selected_symptoms", None)
@@ -255,7 +298,6 @@ def diagnose():
         diagnosis=scores,
         selected_symptoms=selected_symptoms
     )
-
 
 @app.route("/clear")
 def clear():
