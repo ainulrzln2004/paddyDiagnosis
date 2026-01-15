@@ -29,6 +29,7 @@
     {% endif %}
   {% endwith %}
 
+
   <!-- ================= ADD DISEASE ================= -->
   <div class="result-card" style="border-left-color:#2563eb; background:#eff6ff;">
     <h3>Add New Disease</h3>
@@ -68,11 +69,21 @@
                 style="margin-top:12px;"
                 required></textarea>
 
+                
+
     <!-- Symptoms + Logic (per symptom) -->
 <div style="margin-top:12px;">
   <label style="font-weight:800; display:block; margin-bottom:8px;">
     Select Symptoms + Logic
   </label>
+   <div style="background:#f8fafc; border:1px solid #e2e8f0; padding:14px; border-radius:12px; margin-bottom:12px;">
+  <strong>How to choose OR / AND</strong>
+  <ul style="margin:8px 0 0 18px; color:#475569;">
+    <li><b>OR</b> → Select if <u>any one</u> of the symptoms can indicate the disease</li>
+    <li><b>AND</b> → Select if the symptom <u>must appear together</u> with others</li>
+  </ul>
+ 
+</div>
 
   <div style="display:grid; grid-template-columns:1fr; gap:10px; max-height:260px; overflow:auto; padding:10px; border:1px solid #e2e8f0; border-radius:12px; background:#fff;">
     {% for s in data.symptoms %}
@@ -101,7 +112,7 @@
       <button class="btn-analyze" style="margin-top:16px;">Save Disease</button>
     </form>
   </div>
-
+  
   <!-- ================= ADD SYMPTOM ================= -->
   <div class="result-card" style="border-left-color:#10b981; background:#ecfdf5; margin-top:20px;">
     <h3>Add New Symptom</h3>
@@ -181,6 +192,8 @@
       </tbody>
     </table>
   </div>
+
+  
  <div style="margin-top: 40px;">
       <h3>List of Diseases</h3>
 
@@ -248,7 +261,19 @@
                   {% if s_ref.id == sym_id.id %}
                     <li>{{ s_ref.label }} 
                       <span style="font-size:0.8em; color:#64748b;">
-                        (Logic: {{ sym_id.logic }})
+                        {% set L = (sym_id.logic or 'OR')|upper %}
+{% if L == 'AND' %}
+  <span style="font-size:0.75em; background:#fee2e2; color:#991b1b; padding:2px 8px; border-radius:999px; margin-left:8px;">
+    Required
+  </span>
+  <span style="font-size:0.75em; color:#64748b; margin-left:6px;">(must appear)</span>
+{% else %}
+  <span style="font-size:0.75em; background:#dcfce7; color:#166534; padding:2px 8px; border-radius:999px; margin-left:8px;">
+    Optional
+  </span>
+  <span style="font-size:0.75em; color:#64748b; margin-left:6px;">(any one is enough)</span>
+{% endif %}
+
                       </span>
                     </li>
                   {% endif %}

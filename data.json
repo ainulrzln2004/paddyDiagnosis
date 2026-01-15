@@ -342,27 +342,6 @@
         "Practice synchronous planting in the community.",
         "Use resistant varieties."
       ]
-    },
-    {
-      "id": "ss",
-      "name": "ss",
-      "type": "Fungal Disease",
-      "severity": "Low",
-      "logic": "OR",
-      "description": "ss",
-      "management": [
-        "ss"
-      ],
-      "symptoms": [
-        {
-          "id": "leaf_diamond_lesions",
-          "logic": "OR"
-        },
-        {
-          "id": "leaf_gray_center",
-          "logic": "AND"
-        }
-      ]
     }
   ]
 }
